@@ -17,7 +17,7 @@ class BeneficiaryController extends Controller
 
         $start = microtime(true);
 
-        $beneficiaries = Beneficiary::where('status', 'active')->paginate(1000);
+        $beneficiaries = Beneficiary::where('status', 'active')->paginate(1);
 
         $duration = microtime(true) - $start;
 
@@ -50,7 +50,7 @@ class BeneficiaryController extends Controller
         $start = microtime(true);
 
         $beneficiaries = Cache::remember('active_beneficiaries', 600, function () {
-            return Beneficiary::where('status', 'active')->paginate(1000);
+            return Beneficiary::where('status', 'active')->paginate(1);
         });
 
         $duration = microtime(true) - $start;
